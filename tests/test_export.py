@@ -1,5 +1,5 @@
 """Testy názvu souboru pro uložení."""
-from app.export import file_name
+from web.export import file_name
 
 
 def test_nazev_souboru_podle_hledaneho_vyrazu():

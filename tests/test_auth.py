@@ -1,5 +1,5 @@
 """Testy kontroly přístupového tokenu."""
-from app.auth import token_ok
+from web.auth import token_ok
 
 
 def test_spravny_token_projde():

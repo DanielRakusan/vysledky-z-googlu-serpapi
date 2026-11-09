@@ -1,6 +1,6 @@
 """Testy vyhledávání: výběr výsledků a limit."""
-from app import search
-from app.search import limit_reached, parse_results
+from web import search
+from web.search import limit_reached, parse_results
 
 
 def test_vrati_organicke_vysledky_ve_spravnem_tvaru():

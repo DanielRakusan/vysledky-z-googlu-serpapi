@@ -6,7 +6,7 @@ def create_app():
     """Vytvoří a sestaví aplikaci."""
     app = Flask(__name__)
 
-    from app.routes import main
+    from web.routes import main
     app.register_blueprint(main)
 
     return app

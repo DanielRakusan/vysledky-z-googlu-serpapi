@@ -20,14 +20,14 @@ Aplikace čte dvě proměnné prostředí. Nikdy je nepiš přímo do kódu.
 | `SERPAPI_KEY` | klíč ze SerpApi (zdarma po registraci) |
 | `ACCESS_TOKEN` | heslo pro vstup do aplikace; když není nastavené, aplikace je bez hesla (jen pro lokální vývoj) |
 
-Počet hledání je omezený na 200 za měsíc (`MAX_SEARCHES` v `app/search.py`). Stejné hledání se hodinu pamatuje, takže opakované kliknutí na stejný výraz limit nečerpá.
+Počet hledání je omezený na 200 za měsíc (`MAX_SEARCHES` v `web/search.py`). Stejné hledání se hodinu pamatuje, takže opakované kliknutí na stejný výraz limit nečerpá.
 
 ## Spuštění lokálně
 
 ```bash
 python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
-SERPAPI_KEY=tvuj_klic ACCESS_TOKEN=nejake_heslo .venv/bin/python wsgi.py
+SERPAPI_KEY=tvuj_klic ACCESS_TOKEN=nejake_heslo .venv/bin/python app.py
 ```
 
 Aplikace poběží na http://localhost:3000.
@@ -43,13 +43,13 @@ Testy nevolají internet ani SerpApi, takže nespotřebují žádná hledání.
 ## Nasazení (např. Render)
 
 - **Build Command:** `pip install -r requirements.txt`
-- **Start Command:** `gunicorn wsgi:app`
+- **Start Command:** `gunicorn app:app`
 - **Environment Variables:** `SERPAPI_KEY` a `ACCESS_TOKEN`
 
 ## Struktura projektu
 
 ```
-app/
+web/
   __init__.py     sestaví aplikaci
   routes.py       adresy: přihlášení, hledání, stažení
   auth.py         kontrola přístupového tokenu
@@ -58,5 +58,5 @@ app/
   templates/      HTML stránky (login.html, index.html)
   static/         vzhled (style.css)
 tests/            testy rozdělené podle modulů
-wsgi.py           vstupní bod aplikace
+app.py            vstupní bod aplikace (spouští ho i hosting)
 ```

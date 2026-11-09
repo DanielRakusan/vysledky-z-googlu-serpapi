@@ -1,7 +1,7 @@
 """Společné nastavení testů."""
 import pytest
 
-from app import search
+from web import search
 
 
 @pytest.fixture(autouse=True)

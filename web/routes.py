@@ -3,9 +3,9 @@ import json
 
 from flask import Blueprint, Response, redirect, render_template, request
 
-from app.auth import expected_token, logged_in, token_ok
-from app.export import file_name
-from app.search import run_search
+from web.auth import expected_token, logged_in, token_ok
+from web.export import file_name
+from web.search import run_search
 
 main = Blueprint("main", __name__)
 

@@ -1,7 +1,7 @@
 """Testy celé aplikace: přihlášení, hledání a stažení."""
 import pytest
 
-from app import create_app, search
+from web import create_app, search
 
 
 @pytest.fixture
