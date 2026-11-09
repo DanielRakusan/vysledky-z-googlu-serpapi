@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<!-- Úvodní obrazovka: zadání přístupového tokenu -->
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Výsledky z Googlu</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Výsledky z <span class="g1">G</span><span class="g2">o</span><span class="g3">o</span><span class="g1">g</span><span class="g4">l</span><span class="g2">u</span></h1>
+
+        <p class="lead">Tato aplikace je chráněná. Pro vstup zadejte přístupový token, který jste obdrželi e-mailem.</p>
+        <p class="note">Přístup je omezený, protože každé hledání spotřebuje část omezeného počtu dotazů u externí vyhledávací služby. Token brání tomu, aby je vyčerpal někdo cizí.</p>
+
+        <form method="post">
+            <input type="password" name="token" placeholder="Přístupový token" required autofocus>
+            <button type="submit">Vstoupit</button>
+        </form>
+
+        {% if message %}<p class="note">{{ message }}</p>{% endif %}
+    </div>
+</body>
+</html>

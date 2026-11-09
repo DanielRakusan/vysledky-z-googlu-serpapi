@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!-- Hlavní obrazovka: vyhledávání a seznam výsledků -->
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Výsledky z Googlu</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Výsledky z <span class="g1">G</span><span class="g2">o</span><span class="g3">o</span><span class="g1">g</span><span class="g4">l</span><span class="g2">u</span></h1>
+        <p class="note">Zadej klíčové slovo a získej přirozené výsledky první strany Googlu. Hledání zajišťuje služba SerpApi a výsledky si můžeš uložit jako JSON.</p>
+
+        <form method="get">
+            <input type="text" name="q" value="{{ q }}" placeholder="Zadej klíčová slova" required autofocus>
+            <button type="submit">Vyhledat</button>
+        </form>
+
+        {% if results %}
+        <form method="post" action="/download">
+            <input type="hidden" name="data" value="{{ data }}">
+            <button type="submit">Uložit JSON</button>
+        </form>
+
+        <div id="results">
+            {% for r in results %}
+            <a class="card" href="{{ r.link }}" target="_blank" rel="noopener">
+                <span class="position">{{ r.position }}</span>
+                <span class="title">{{ r.title }}</span>
+                <span class="url">{{ r.link }}</span>
+                <span class="snippet">{{ r.snippet }}</span>
+            </a>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if message %}<p class="note">{{ message }}</p>{% endif %}
+    </div>
+</body>
+</html>

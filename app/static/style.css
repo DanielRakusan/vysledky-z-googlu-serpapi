@@ -1,0 +1,190 @@
+/* Vzhled celé aplikace. Všechny barvy jsou na jednom místě, v proměnných hned tady.
+   Když změníš hodnotu, změní se na všech místech, kde se proměnná používá. */
+:root {
+    /* texty */
+    --text: #222;
+    --text-soft: #555;
+    --text-light: #8a9099;
+
+    /* pozadí a ohraničení */
+    --page: #f5f5f5;          /* pozadí stránky */
+    --surface: #ffffff;       /* karta, tlačítka */
+    --line: #c9cdd3;          /* ohraničení polí, tlačítek a karet */
+    --shadow: 0 2px 12px rgba(0, 0, 0, 0.06);        /* stín velké karty a karty při najetí */
+    --shadow-small: 0 1px 4px rgba(0, 0, 0, 0.05);   /* lehčí stín malých karet s výsledky */
+
+    /* zvýraznění: odkazy, ohraničení při psaní a najetí myší */
+    --accent: #5d6b86;
+    --accent-dark: #3f4a60;
+    --hover: #eceef2;
+    --pressed: #dde0e6;
+
+    /* písmena ve slově Googlu: šedá s lehkým nádechem barvy */
+    --logo-blue: #5d6b86;
+    --logo-red: #94807d;
+    --logo-yellow: #b8ae8e;
+    --logo-green: #6f8577;
+}
+
+/* šířka se počítá včetně okrajů a odsazení, ať nic nepřetéká */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--page);
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 320px;   /* užší než malý mobil se stránka už nezmenšuje */
+    margin: 0;
+    padding: 16px;
+}
+
+.container {
+    text-align: center;
+    background: var(--surface);
+    padding: 40px;
+    border-radius: 12px;
+    max-width: 100%;
+    box-shadow: var(--shadow);
+}
+
+input {
+    padding: 12px;
+    flex: 1 1 160px;      /* pole se podle místa zmenšuje, ale nepřeroste 300 px */
+    max-width: 300px;
+    min-width: 0;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    color: var(--text);
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+button {
+    flex: 0 0 auto;       /* tlačítko drží svou velikost a zůstává vedle pole */
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 13px 23px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: var(--hover);
+    border-color: var(--accent);
+}
+
+button:active {
+    background: var(--pressed);
+}
+
+/* písmena slova Googlu */
+.g1 { color: var(--logo-blue); }
+.g2 { color: var(--logo-red); }
+.g3 { color: var(--logo-yellow); }
+.g4 { color: var(--logo-green); }
+
+.lead {
+    max-width: 480px;
+    margin: 0 auto 12px;
+    font-size: 18px;
+}
+
+.note {
+    max-width: 480px;
+    margin: 0 auto 24px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text-light);
+}
+
+/* výsledky jako klikací karty */
+#results {
+    text-align: left;
+    max-width: 600px;
+    margin: 24px auto 0;
+}
+
+.card {
+    position: relative;
+    display: block;
+    padding: 14px 16px 14px 48px;
+    margin-bottom: 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: var(--shadow-small);
+    overflow-wrap: anywhere;   /* dlouhé adresy a slova se zalomí */
+}
+
+.card:hover {
+    background: var(--hover);
+    border-color: var(--accent);
+    box-shadow: var(--shadow);
+}
+
+.card:active {
+    background: var(--pressed);
+}
+
+.card .position {
+    position: absolute;
+    left: 16px;
+    top: 14px;
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.card .title {
+    display: block;
+    font-size: 17px;
+    color: var(--accent);
+}
+
+.card:hover .title {
+    color: var(--accent-dark);
+}
+
+.card .url {
+    display: block;
+    font-size: 13px;
+    color: var(--text-light);
+    word-break: break-all;
+}
+
+.card .snippet {
+    display: block;
+    margin-top: 4px;
+    font-size: 14px;
+    color: var(--text-soft);
+}
+
+/* prvky ve formuláři (pole a tlačítko) se zalamují s pravidelnou mezerou */
+form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* odsazení tlačítka Uložit JSON od vyhledávacího pole */
+form + form {
+    margin-top: 20px;
+}
+
+/* malé displeje (mobil): menší odsazení karty */
+@media (max-width: 480px) {
+    .container {
+        padding: 24px 16px;
+    }
+}
